@@ -28,14 +28,14 @@ canvas{
     Foto Atas<br>
     <input type="file" id="foto1"><br>
     Zoom:
-    <input type="range" id="zoom1" min="0.5" max="3" step="0.1" value="1">
+    <input type="range" id="zoom1" min="0.1" max="3" step="0.1" value="0.3">
 </div>
 
 <div class="controls">
     Foto Bawah<br>
     <input type="file" id="foto2"><br>
     Zoom:
-    <input type="range" id="zoom2" min="0.5" max="3" step="0.1" value="1">
+    <input type="range" id="zoom2" min="0.1" max="3" step="0.1" value="0.3">
 </div>
 
 <button onclick="downloadImage()">Download</button>
@@ -92,13 +92,13 @@ function draw(){
     ctx.clip();
 
     ctx.drawImage(
-        img1,
-        pos1.x,
-        pos1.y,
-        img1.width*0.4*scale,
-        img1.height*0.4*scale
-    );
-
+    img1,
+    pos1.x,
+    pos1.y,
+    img1.width*scale,
+    img1.height*scale
+);
+        
     ctx.restore();
 }
 
@@ -114,12 +114,12 @@ ctx.rect(80,820,373,373);
     ctx.clip();
 
     ctx.drawImage(
-        img2,
-        pos2.x,
-        pos2.y,
-        img2.width*0.4*scale,
-        img2.height*0.4*scale
-    );
+    img2,
+    pos2.x,
+    pos2.y,
+    img2.width*scale,
+    img2.height*scale
+);
 
     ctx.restore();
 }
@@ -163,6 +163,14 @@ canvas.addEventListener("mousemove",e=>{
 
     draw();
 
+});
+
+canvas.addEventListener("mouseup",()=>{
+    dragging=null;
+});
+
+canvas.addEventListener("mouseleave",()=>{
+    dragging=null;
 });
 
 canvas.addEventListener("touchstart",e=>{
