@@ -28,21 +28,21 @@ canvas{
     Foto Atas<br>
     <input type="file" id="foto1"><br>
     Zoom:
-    <input type="range" id="zoom1" min="0.1" max="3" step="0.1" value="0.3">
+    <input type="range" id="zoom1" min="0.5" max="3" step="0.1" value="1">
 </div>
 
 <div class="controls">
     Foto Bawah<br>
     <input type="file" id="foto2"><br>
     Zoom:
-    <input type="range" id="zoom2" min="0.1" max="3" step="0.1" value="0.3">
+    <input type="range" id="zoom2" min="0.5" max="3" step="0.1" value="1">
 </div>
 
 <button onclick="downloadImage()">Download</button>
 
 <br><br>
 
-<canvas id="canvas" width="531" height="1654"></canvas>
+<canvas id="canvas" width="1080" height="1920"></canvas>
 
 <script>
 
@@ -52,8 +52,8 @@ const ctx = canvas.getContext("2d");
 let img1 = null;
 let img2 = null;
 
-let pos1 = {x:50,y:250};
-let pos2 = {x:50,y:850};
+let pos1 = {x:80,y:350};
+let pos2 = {x:150,y:950};
 
 let dragging = null;
 
@@ -88,17 +88,17 @@ function draw(){
     ctx.save();
 
     ctx.beginPath();
-    ctx.rect(80,275,373,373);
+    ctx.rect(110,430,760,589);
     ctx.clip();
 
     ctx.drawImage(
-    img1,
-    pos1.x,
-    pos1.y,
-    img1.width*scale,
-    img1.height*scale
-);
-        
+        img1,
+        pos1.x,
+        pos1.y,
+        img1.width*0.7*scale,
+img1.height*0.7*scale
+    );
+
     ctx.restore();
 }
 
@@ -110,21 +110,21 @@ if(img2){
 
     ctx.beginPath();
 
-ctx.rect(80,820,373,373);
+ctx.rect(245,1030,760,620);
     ctx.clip();
 
     ctx.drawImage(
-    img2,
-    pos2.x,
-    pos2.y,
-    img2.width*scale,
-    img2.height*scale
-);
+        img2,
+        pos2.x,
+        pos2.y,
+        img2.width*0.7*scale,
+img2.height*0.7*scale
+    );
 
     ctx.restore();
 }
 
-    ctx.drawImage(frame,0,0,531,1654);
+    ctx.drawImage(frame,0,0,1080,1920);
 }
 
 canvas.addEventListener("mousedown",e=>{
@@ -134,7 +134,7 @@ canvas.addEventListener("mousedown",e=>{
     let x=(e.clientX-rect.left)*(canvas.width/rect.width);
     let y=(e.clientY-rect.top)*(canvas.height/rect.height);
 
-    if(y<800){
+    if(y<1000){
         dragging="foto1";
     }else{
         dragging="foto2";
@@ -166,11 +166,11 @@ canvas.addEventListener("mousemove",e=>{
 });
 
 canvas.addEventListener("mouseup",()=>{
-    dragging=null;
+    dragging = null;
 });
 
 canvas.addEventListener("mouseleave",()=>{
-    dragging=null;
+    dragging = null;
 });
 
 canvas.addEventListener("touchstart",e=>{
@@ -182,10 +182,10 @@ canvas.addEventListener("touchstart",e=>{
     let x=(touch.clientX-rect.left)*(canvas.width/rect.width);
     let y=(touch.clientY-rect.top)*(canvas.height/rect.height);
 
-    if(x>=80 && x<=450 && y>=275 && y<=645){
+    if(x>=110 && x<=850 && y>=450 && y<=970){
         dragging="foto1";
     }
-    else if(x>=80 && x<=450 && y>=852 && y<=1225){
+    else if(x>=250 && x<=1010 && y>=1060 && y<=1580){
         dragging="foto2";
     }
 
