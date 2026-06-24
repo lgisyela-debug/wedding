@@ -28,14 +28,22 @@ canvas{
     Foto Atas<br>
     <input type="file" id="foto1"><br>
     Zoom:
-    <input type="range" id="zoom1" min="0.05" max="5" step="0.05" value="1">
+    Zoom:
+<input type="range" id="zoom1" min="0.05" max="5" step="0.05" value="1">
+<br>
+Rotate:
+<input type="range" id="rotate1" min="-180" max="180" step="1" value="0">
 </div>
 
 <div class="controls">
     Foto Bawah<br>
     <input type="file" id="foto2"><br>
     Zoom:
-    <input type="range" id="zoom2" min="0.05" max="5" step="0.05" value="1">
+    Zoom:
+<input type="range" id="zoom2" min="0.05" max="5" step="0.05" value="1">
+<br>
+Rotate:
+<input type="range" id="rotate2" min="-180" max="180" step="1" value="0">
 </div>
 
 <button onclick="downloadImage()">Download</button>
@@ -74,6 +82,8 @@ document.getElementById("foto2").onchange = e=>{
 
 document.getElementById("zoom1").oninput = draw;
 document.getElementById("zoom2").oninput = draw;
+document.getElementById("rotate1").oninput = draw;
+document.getElementById("rotate2").oninput = draw;
 
 frame.onload = draw;
 
