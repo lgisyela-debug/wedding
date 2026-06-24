@@ -101,13 +101,22 @@ function draw(){
     ctx.rect(110,430,760,589);
     ctx.clip();
 
-    ctx.drawImage(
-        img1,
-        pos1.x,
-        pos1.y,
-        img1.width*0.25*scale,
-img1.height*0.25*scale
-    );
+    let angle = parseFloat(document.getElementById("rotate1").value) * Math.PI / 180;
+
+ctx.translate(
+    pos1.x + (img1.width*0.25*scale)/2,
+    pos1.y + (img1.height*0.25*scale)/2
+);
+
+ctx.rotate(angle);
+
+ctx.drawImage(
+    img1,
+    -(img1.width*0.25*scale)/2,
+    -(img1.height*0.25*scale)/2,
+    img1.width*0.25*scale,
+    img1.height*0.25*scale
+);
 
     ctx.restore();
 }
@@ -123,13 +132,22 @@ if(img2){
 ctx.rect(245,1030,760,620);
     ctx.clip();
 
-    ctx.drawImage(
-        img2,
-        pos2.x,
-        pos2.y,
-        img2.width*0.25*scale,
-img2.height*0.25*scale
-    );
+    let angle = parseFloat(document.getElementById("rotate2").value) * Math.PI / 180;
+
+ctx.translate(
+    pos2.x + (img2.width*0.25*scale)/2,
+    pos2.y + (img2.height*0.25*scale)/2
+);
+
+ctx.rotate(angle);
+
+ctx.drawImage(
+    img2,
+    -(img2.width*0.25*scale)/2,
+    -(img2.height*0.25*scale)/2,
+    img2.width*0.25*scale,
+    img2.height*0.25*scale
+);
 
     ctx.restore();
 }
