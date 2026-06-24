@@ -32,7 +32,9 @@ canvas{
 <input type="range" id="zoom1" min="0.05" max="5" step="0.05" value="1">
 <br>
 Rotate:
-<button onclick="rotatePhoto1()">Rotate Foto Atas</button>
+<button onclick="rotateLeft1()">↺</button>
+<button onclick="rotateRight1()">↻</button>
+<button onclick="flipPhoto1()">Mirror Foto Atas</button>
 </div>
 
 <div class="controls">
@@ -43,9 +45,12 @@ Rotate:
 <input type="range" id="zoom2" min="0.05" max="5" step="0.05" value="1">
 <br>
 Rotate:
-<button onclick="rotatePhoto2()">Rotate Foto Bawah</button>
+<button onclick="rotateLeft2()">↺</button>
+<button onclick="rotateRight2()">↻</button>
+<button onclick="flipPhoto2()">Mirror Foto Bawah</button>
 </div>
 
+<button onclick="resetAll()">Reset</button>
 <button onclick="downloadImage()">Download</button>
 
 <br><br>
@@ -66,6 +71,9 @@ let pos2 = {x:150,y:950};
 let dragging = null;
 let rotation1 = 0;
 let rotation2 = 0;
+
+let flip1 = 1;
+let flip2 = 1;
 
 const frame = new Image();
 frame.src = "template.png";
@@ -110,6 +118,7 @@ ctx.translate(
 );
 
 ctx.rotate(angle);
+ctx.scale(flip1,1);
 
 ctx.drawImage(
     img1,
@@ -140,6 +149,7 @@ ctx.translate(
 );
 
 ctx.rotate(angle);
+ctx.scale(flip2,1);
 
 ctx.drawImage(
     img2,
@@ -250,13 +260,49 @@ canvas.addEventListener("touchend",()=>{
     dragging=null;
 });
 
-function rotatePhoto1(){
+function rotateRight1(){
     rotation1 += 90;
     draw();
 }
 
-function rotatePhoto2(){
+function rotateLeft1(){
+    rotation1 -= 90;
+    draw();
+}
+
+function rotateRight2(){
     rotation2 += 90;
+    draw();
+}
+
+function rotateLeft2(){
+    rotation2 -= 90;
+    draw();
+}
+function flipPhoto1(){
+    flip1 *= -1;
+    draw();
+}
+
+function flipPhoto2(){
+    flip2 *= -1;
+    draw();
+}}
+
+function resetAll(){
+
+    pos1 = {x:80,y:350};
+    pos2 = {x:150,y:950};
+
+    rotation1 = 0;
+    rotation2 = 0;
+
+    flip1 = 1;
+    flip2 = 1;
+
+    document.getElementById("zoom1").value = 1;
+    document.getElementById("zoom2").value = 1;
+
     draw();
 }
 
