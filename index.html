@@ -79,12 +79,20 @@ frame.src = "template.png";
 document.getElementById("foto1").onchange = e=>{
     img1 = new Image();
     img1.onload = draw;
+
+img1.onerror = ()=>{
+    alert("Format foto tidak didukung. Gunakan JPG atau PNG.");
+}
     img1.src = URL.createObjectURL(e.target.files[0]);
 }
 
 document.getElementById("foto2").onchange = e=>{
     img2 = new Image();
     img2.onload = draw;
+
+img2.onerror = ()=>{
+    alert("Format foto tidak didukung. Gunakan JPG atau PNG.");
+}
     img2.src = URL.createObjectURL(e.target.files[0]);
 }
 
