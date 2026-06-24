@@ -162,7 +162,8 @@ ctx.drawImage(
     ctx.restore();
 }
 
-    ctx.drawImage(frame,0,0,1080,1920);
+    ctx.imageSmoothingEnabled = true;
+ctx.drawImage(frame,0,0,1080,1920);
 }
 
 canvas.addEventListener("mousedown",e=>{
